@@ -31,8 +31,8 @@
                   <tr>
                     
                      <td>${allCategory.category}</td>
-                       <td><a href="goToUpdateCategory?id=${allCategory.id }">Update |</a>
-                       <a href="deleteCategory?id=${allCategory.id }" onclick="if (!(confirm('Are you sure you want to delete this Category?'))) return false">Delete</a>&nbsp; &nbsp;
+                       <td><a class="btn btn-info" href="goToUpdateCategory?id=${allCategory.id }">Update </a>
+                       <a class="btn btn-danger" href="deleteCategory?id=${allCategory.id }" onclick="if (!(confirm('Are you sure you want to delete this Category?'))) return false">Delete</a>&nbsp; &nbsp;
                      
                        </tr>
                 

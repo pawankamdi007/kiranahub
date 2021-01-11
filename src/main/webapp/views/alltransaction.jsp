@@ -7,38 +7,41 @@
 <%@ page isELIgnored="false" %>
 
 <c:import url="/include/adminheader.jsp">
-<c:param name="title" value="All Customers"></c:param>
+<c:param name="title" value="All Transaction"></c:param>
 </c:import>
 
 <div class="container mtb">
 	<div class="row">
 		<div class="col-md-7">
-        <h3 style="margin-left: 15px">All Customers</h3><br>
+        <h3 style="margin-left: 15px">All Transaction</h3><br>
         
         
         <table class="table display data-table text-nowrap dataTable no-footer" id="DataTables_Table_0" role="grid">
                <thead>
                   <tr role="row">
                       
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Mobile </th>
-                      <th>City</th>
+                      <th>Customer Id</th>
+                      <th>Total Amount</th>
+                      <th>Paid Amount </th>
+                      <th>Balance Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
                      
                      <th style="text-align:center">Action</th>
                                        
                   </tr>
                </thead>
                <tbody>
-               <c:forEach var="allcustomer" items="${allcustomer}">
+               <c:forEach var="transaction" items="${transaction}">
                   <tr> 
-                     <td>${allcustomer.firstName}</td>
-                     <td>${allcustomer.lastName}</td>
-                     <td>${allcustomer.mobile}</td>
-                     <td>${allcustomer.city}</td>
+                     <td>${transaction.tid}</td>
+                     <td>${transaction.totalAmount}</td>
+                     <td>${transaction.paidAmount}</td>
+                     <td>${transaction.balanceAmount}</td>
+                     <td>${transaction.status}</td>
+                     <td>${transaction.created}</td>
                      <td><a class="btn btn-info" href="goToUpdateCustomer?id=${allcustomer.id }">Update </a>
-                     <a class="btn btn-danger" href="goTodeleteCustomer?id=${allcustomer.id }" onclick="if (!(confirm('Are you sure you want to delete this Customer?'))) return false">Delete</a>&nbsp; &nbsp;
-                      <td><a class="btn btn-success" href="goToPay?id=${allcustomer.id}">Pay</a></td>
+                     <a class="btn btn-danger" href="goTodeleteCustomer?id=${allcustomer.id }" onclick="if (!(confirm('Are you sure you want to delete this Customer?'))) return false">Delete</a>&nbsp; &nbsp;  
                      </td>
                      
                       </tr>

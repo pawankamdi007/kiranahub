@@ -62,6 +62,7 @@
               <li><a href="goToAllCategory">All Category</a></li>
                <li><a href="goToAddCustomer">Add Customer</a></li>
                <li><a href="goToAllCustomer">All Customer</a></li>
+               <li><a href="goToAllTrasaction">All Transactions</a></li>
               
             </ul>
           </li>

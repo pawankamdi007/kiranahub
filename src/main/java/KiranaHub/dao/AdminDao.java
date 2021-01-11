@@ -7,6 +7,7 @@ import KiranaHub.entity.Category;
 import KiranaHub.entity.Customer;
 import KiranaHub.entity.Inventory;
 import KiranaHub.entity.Register;
+import KiranaHub.entity.Transaction;
 
 public interface AdminDao {
 
@@ -46,4 +47,8 @@ public interface AdminDao {
 	void addCustomer(Customer theCustomer);
 
 	List<Customer> getAllCustomer();
+	
+	void pay(int id, String totalAmount, String paidAmount, int balanceAmount);
+
+	List<Transaction> getAllTransaction();
 }

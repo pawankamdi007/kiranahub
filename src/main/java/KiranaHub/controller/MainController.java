@@ -16,6 +16,7 @@ import KiranaHub.entity.Category;
 import KiranaHub.entity.Customer;
 import KiranaHub.entity.Inventory;
 import KiranaHub.entity.Register;
+import KiranaHub.entity.Transaction;
 
 @Controller
 public class MainController {
@@ -286,5 +287,44 @@ public class MainController {
 		
 		return modelAndView;	
 	}
+	
+	@GetMapping("goToPay")
+	public ModelAndView goToPay(@RequestParam("id") int id) {
+		ModelAndView modelAndView=new ModelAndView("pay");
+		modelAndView.addObject("id", id);
+		return modelAndView;
+	}
+	
+	@PostMapping("pay")
+	public ModelAndView pay(@RequestParam("id") int id,
+			@RequestParam("totalAmount") String totalAmount, 
+			@RequestParam("paidAmount") String paidAmount, 
+			@RequestParam("balanceAmount") int balanceAmount ) {
+		
+		ModelAndView modelAndView=new ModelAndView("index");
+		Register register=new Register();
+		modelAndView.addObject("register", register);
+		
+		
+		
+		adminDao.pay(id, totalAmount, paidAmount, balanceAmount);
+		
+		System.out.println("hello");
+		return modelAndView;
+	}
+	
+	@GetMapping("goToAllTrasaction")
+	public ModelAndView allTransaction() {
+		ModelAndView modelAndView=new ModelAndView("alltransaction");
+		List<Transaction> transaction=adminDao.getAllTransaction();
+		
+		for(Transaction a:transaction) {
+			System.out.println(a.getTid());
+		}
+		modelAndView.addObject("transaction", transaction);
+		return modelAndView;
+	}
+
+	
 
 }

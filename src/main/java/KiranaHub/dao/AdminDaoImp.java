@@ -15,6 +15,7 @@ import KiranaHub.entity.Category;
 import KiranaHub.entity.Customer;
 import KiranaHub.entity.Inventory;
 import KiranaHub.entity.Register;
+import KiranaHub.entity.Transaction;
 
 @Repository	
 public class AdminDaoImp implements AdminDao {
@@ -187,6 +188,49 @@ public class AdminDaoImp implements AdminDao {
 
 		return theCustomer;
 	}
+	
+	@Transactional
+	public void pay(int id, String totalAmount, String paidAmount, int balanceAmount) {
+		
+		Session session= sessionFactory.getCurrentSession();
+		
+		String status;
+		
+		Transaction transaction=new Transaction();
+		transaction.setTotalAmount(totalAmount);
+		transaction.setPaidAmount(paidAmount);
+		transaction.setBalanceAmount(balanceAmount);
+		
+		if (balanceAmount == 0) {
+			status = "paid";
+		}
+		else {
+			status="pending";
+		}
+		
+		transaction.setStatus(status);
+		
+		Customer customer=session.get(Customer.class, id);
+	
+		
+		  customer.getTransaction().add(transaction);
+		  
+		  transaction.setCustomer(customer);
+		  
+		  session.save(transaction);
+		 
+		}
+	
+	@Transactional
+	public List<Transaction> getAllTransaction() {
+		
+		Session session=sessionFactory.getCurrentSession();
+		Query<Transaction> query=session.createQuery("from Transaction",Transaction.class);
+		List<Transaction> transaction=query.getResultList();
+		
+		return transaction;
+	}
+
 		
 
 

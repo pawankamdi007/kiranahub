@@ -1,10 +1,15 @@
 package KiranaHub.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="customer")
@@ -20,6 +25,10 @@ public class Customer {
 	private String mobile;
 	private String city;
 	private String address;
+	
+	 @OneToMany(mappedBy="customer",cascade={CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH}) 
+	 private List<Transaction> transaction;
+	  
 	
 	public Customer() {
 		
@@ -88,7 +97,19 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	
+	
 
+	
+	  public List<Transaction> getTransaction() { 
+		  return transaction; 
+		  }
+	  
+	  public void setTransaction(List<Transaction> transaction) {
+		  this.transaction = transaction; 
+	  }
+	 
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
