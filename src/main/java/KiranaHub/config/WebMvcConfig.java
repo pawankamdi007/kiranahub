@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 
 
@@ -28,8 +29,19 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	   
 	  resolver.setPrefix("/views/");
 	  resolver.setSuffix(".jsp");
-	  return resolver; }
-	 
+	  resolver.setOrder(2);
+	  return resolver; 
+	  }
+	  
+	  @Bean
+		 public ResourceBundleViewResolver resolver1() {
+			 ResourceBundleViewResolver resolver1 = new ResourceBundleViewResolver();
+			 resolver1.setBasename("views");
+			 resolver1.setOrder(1);
+			return resolver1;
+		 
+	  
+	  }
 	
 	
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -42,6 +42,7 @@
                      <td>${transaction.created}</td>
                      <td><a class="btn btn-info" href="goToUpdateCustomer?id=${allcustomer.id }">Update </a>
                      <a class="btn btn-danger" href="goTodeleteCustomer?id=${allcustomer.id }" onclick="if (!(confirm('Are you sure you want to delete this Customer?'))) return false">Delete</a>&nbsp; &nbsp;  
+                     <a class="btn btn-info" href="downloadPDF?id=${transaction.tid}">Download PDF </a>
                      </td>
                      
                       </tr>

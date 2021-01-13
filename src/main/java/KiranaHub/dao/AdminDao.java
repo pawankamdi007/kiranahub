@@ -51,4 +51,6 @@ public interface AdminDao {
 	void pay(int id, String totalAmount, String paidAmount, int balanceAmount);
 
 	List<Transaction> getAllTransaction();
+
+	Transaction getTransaction(int id);
 }

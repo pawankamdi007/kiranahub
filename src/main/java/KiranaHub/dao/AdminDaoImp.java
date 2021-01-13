@@ -231,6 +231,16 @@ public class AdminDaoImp implements AdminDao {
 		return transaction;
 	}
 
+	@Transactional
+	public Transaction getTransaction(int id) {
+		
+		Session session=sessionFactory.getCurrentSession();
+		
+		Transaction transaction=session.byId(Transaction.class).load(id);
+		
+		return transaction;
+	}
+
 		
 
 

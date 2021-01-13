@@ -1,5 +1,7 @@
 package KiranaHub.controller;
 
+import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import KiranaHub.entity.Customer;
 import KiranaHub.entity.Inventory;
 import KiranaHub.entity.Register;
 import KiranaHub.entity.Transaction;
+
 
 @Controller
 public class MainController {
@@ -323,6 +326,15 @@ public class MainController {
 		}
 		modelAndView.addObject("transaction", transaction);
 		return modelAndView;
+	}
+	
+	@GetMapping("downloadPDF")
+	public ModelAndView downloadExcel(@RequestParam("id") int id) {
+		
+		Transaction transaction = adminDao.getTransaction(id);
+		
+		return new ModelAndView("pdfView","transaction",transaction);
+		
 	}
 
 	
